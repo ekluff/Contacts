@@ -2,7 +2,7 @@ class Contact
 
   @@contact = []
 
-  attr_reader(:first_name, :last_name, :job_title, :company)
+  attr_reader(:first_name, :last_name, :job_title, :company, :addresses, :phones, :emails)
 
   # instance methods
 
@@ -12,10 +12,8 @@ class Contact
     @job_title = attributes.fetch(:job_title)
     @company = attributes.fetch(:company)
     @phones = []
-  end
-
-  define_method(:phones) do
-    @phones
+    @addresses = []
+    @emails = []
   end
 
   define_method(:save) do
@@ -25,6 +23,14 @@ class Contact
 
   define_method(:new_phone) do |new_phone|
     @phones.push(new_phone)
+  end
+
+  define_method(:new_address) do |new_address|
+    @addresses.push(new_address)
+  end
+
+  define_method(:new_email) do |new_email|
+    @emails.push(new_email)
   end
 
   # Class methods

@@ -44,6 +44,26 @@ describe('Contact') do
       expect(test_contact.phones().include?(test_phone)).to(eq(true))
     end
   end
+
+  describe('#new_address') do
+    it('saves new addresses as objects inside of a contact') do
+      test_contact = Contact.new({:first_name => "Taco", :last_name => "Cat", :job_title => "Professional Napper", :company => "Feline Inc"}).save()
+      test_address = Address.new({:street => "123 Uno dos tres Calle", :city => "Barcelona", :state => "Wyoming", :zip_code => 90210, :type => "Personal"})
+      test_contact.new_address(test_address)
+      expect(test_contact.addresses().include?(test_address)).to(eq(true))
+    end
+  end
+
+  describe('#new_email') do
+    it('saves new emails as objects inside of a contact') do
+      test_contact = Contact.new({:first_name => "Taco", :last_name => "Cat", :job_title => "Professional Napper", :company => "Feline Inc"}).save()
+      test_email = Email.new({:email_address => "t@co.cat", :type => "personal"})
+      test_contact.new_email(test_email)
+      expect(test_contact.emails().include?(test_email)).to(eq(true))
+    end
+  end
+
+
 end
 
 describe ('Address') do
