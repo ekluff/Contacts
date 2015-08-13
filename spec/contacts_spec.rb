@@ -2,6 +2,7 @@ require('rspec')
 require('contacts')
 require('addresses')
 require('email')
+require('phone')
 
 describe('Contacts') do
   before() do
@@ -91,6 +92,34 @@ describe('Email') do
       Email.new({:email_address => "burrit@d.og", :type => "work"}).save()
       Email.new({:email_address => "empanad@fi.sh", :type => "privado"}).save()
       expect(Email.all[2].email_address).to(eq("empanad@fi.sh"))
+    end
+  end
+end
+
+describe('Phone') do
+  before() do
+    Phone.clear
+  end
+
+  describe('clear') do
+    it('it is empty at first') do
+      expect(Phone.all).to(eq([]))
+    end
+  end
+
+  describe('#initialize') do
+    it('returns the phone number and type of number') do
+      test_phone = Phone.new({:phone_number => "503-222-2222", :type => "Business"})
+      expect(test_phone.phone_number()).to(eq("503-222-2222"))
+      expect(test_phone.type()).to(eq("Business"))
+    end
+  end
+
+  describe('.save') do
+    it('saves and makes retrievable multiple phone numbers') do
+      Phone.new({:phone_number => "503-222-2222", :type => "Business"}).save()
+      Phone.new({:phone_number => "503-555-5555", :type => "Home"}).save()
+      expect(Phone.all[1].phone_number()).to(eq("503-555-5555"))
     end
   end
 end
