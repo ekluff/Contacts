@@ -14,7 +14,13 @@ class Address
     @type = attributes.fetch(:type)
   end
 
-  
+  define_method(:save) do
+    @@address.push(self)
+  end
+
+  define_singleton_method(:all) do
+    @@address
+  end
 
 
 
