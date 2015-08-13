@@ -33,6 +33,16 @@ describe('Contacts') do
       expect(Contact.all[1].job_title()).to(eq("Professional Licker"))
     end
   end
+
+
+  describe('#new_phone') do
+    it('saves new phone numbers as objects inside of a contact') do
+      test_contact = Contact.new({:first_name => "Taco", :last_name => "Cat", :job_title => "Professional Napper", :company => "Feline Inc"}).save()
+      test_phone = Phone.new({:phone_number => "503-222-2222", :type => "pizza"})
+      test_contact.new_phone(test_phone)
+      expect(test_contact.phones().include?(test_phone)).to(eq(true))
+    end
+  end
 end
 
 describe ('Address') do
@@ -40,7 +50,7 @@ describe ('Address') do
     Address.clear
   end
 
-  describe('clear') do
+  describe('.clear') do
     it('it is empty at first') do
       expect(Address.all).to(eq([]))
     end
@@ -57,7 +67,7 @@ describe ('Address') do
     end
   end
 
-  describe('.save') do
+  describe('#save') do
     it('saves and makes retrievable multiple addresses') do
       Address.new({:street => "123 Avenida de la Constitucion", :city => "Sevilla", :state => "Andalucia", :zip_code => 41004, :type => "Oficina"}).save()
       Address.new({:street => "52 Beatriz de Suabia", :city => "Arcos de la Frontera", :state => "Andalucia", :zip_code => 48652, :type => "Personal"}).save()
