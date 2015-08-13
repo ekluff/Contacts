@@ -39,8 +39,12 @@ post('/new_contact') do
   # creates Contact instance
   new_contact = Contact.new({:first_name => first_name, :last_name => last_name, :job_title => job_title, :company => company})
 
-  # creates Address instance to add to new_contact
+  # creates Address, Email, and Phone instances to add to new_contact
   address_to_add = Address.new({:street => street, :city => city, :state => state, :zip_code => zip_code, :type => address_type})
+
+  email_to_add = Email.new({:email => email, :type => email_type})
+
+  phone_to_add = Phone.new({:phone_number => phone_number, :type => phone_type})
 
   # push address, phone, and email into new_contact
   new_contact.new_address(address_to_add)
@@ -51,5 +55,6 @@ post('/new_contact') do
   new_contact.save()
 
   @contacts = Contact.all
+
   erb(:index)
 end
