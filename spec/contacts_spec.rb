@@ -34,6 +34,15 @@ describe('Contacts') do
 end
 
 describe ('Addresses') do
+  before() do
+    Address.clear
+  end
+
+  describe('clear') do
+    it('it is empty at first') do
+      expect(Address.all).to(eq([]))
+    end
+  end
 
   describe('#initialize') do
     it('returns the street, city, state, zip code and type of address') do
