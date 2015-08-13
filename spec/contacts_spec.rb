@@ -1,13 +1,14 @@
 require('rspec')
 require('contacts')
 require('addresses')
+require('email')
 
 describe('Contacts') do
   before() do
     Contact.clear
   end
 
-  describe('clear')do
+  describe('clear') do
     it('is empty at first') do
       expect(Contact.all).to(eq([]))
     end
@@ -33,7 +34,7 @@ describe('Contacts') do
   end
 end
 
-describe ('Addresses') do
+describe ('Address') do
   before() do
     Address.clear
   end
@@ -63,6 +64,33 @@ describe ('Addresses') do
       expect(Address.all[1].city()).to(eq("Arcos de la Frontera"))
     end
   end
+end
 
+describe('Email') do
+  before() do
+    Email.clear
+  end
 
+  describe('clear') do
+    it('it is empty at first') do
+      expect(Email.all).to(eq([]))
+    end
+  end
+
+  describe('#initialize') do
+    it('returns the email address and type of a new email instance') do
+      test_email = Email.new({:email_address => "t@co.cat", :type => "personal"})
+      expect(test_email.email_address()).to(eq("t@co.cat"))
+      expect(test_email.type()).to(eq("personal"))
+    end
+  end
+
+  describe('.save') do
+    it('saves and makes retrievable multiple email addresses') do
+      Email.new({:email_address => "t@co.cat", :type => "personal"}).save()
+      Email.new({:email_address => "burrit@d.og", :type => "work"}).save()
+      Email.new({:email_address => "empanad@fi.sh", :type => "privado"}).save()
+      expect(Email.all[2].email_address).to(eq("empanad@fi.sh"))
+    end
+  end
 end
