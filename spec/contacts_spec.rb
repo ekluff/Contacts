@@ -1,8 +1,15 @@
 require('rspec')
 require('contacts')
-require('pry')
 
 describe('Contacts') do
+  before() do
+    Contact.clear
+  end
+
+  it('is empty at first') do
+    expect(Contact.all).to(eq([]))
+  end
+
   it('it returns the first name, last name, job title and company of a contact') do
     test_contact = Contact.new({:first_name => "Taco", :last_name => "Cat", :job_title => "Professional Napper", :company => "Feline Inc"})
     expect(test_contact.first_name()).to(eq("Taco"))
