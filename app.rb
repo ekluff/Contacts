@@ -42,7 +42,7 @@ post('/new_contact') do
   # creates Address, Email, and Phone instances to add to new_contact
   address_to_add = Address.new({:street => street, :city => city, :state => state, :zip_code => zip_code, :type => address_type})
 
-  email_to_add = Email.new({:email => email, :type => email_type})
+  email_to_add = Email.new({:email_address => email, :type => email_type})
 
   phone_to_add = Phone.new({:phone_number => phone_number, :type => phone_type})
 
@@ -57,4 +57,38 @@ post('/new_contact') do
   @contacts = Contact.all
 
   erb(:index)
+end
+
+get('/contacts/:last_name') do
+  last_name = params.fetch("last_name")
+
+  @contact = Contact.find(last_name)
+
+  # binding.pry
+  @addresses = @contact.addresses
+  @phones = @contact.phones
+  @emails = @contact.emails
+
+  # binding.pry
+
+  erb(:details)
+end
+
+post('/contacts/:last_name/new_email') do
+  last_name = params.fetch("last_name")
+
+  new_email = params.fetch("new_email_address")
+  new_email_type = params.fetch("new_email_type")
+
+  email_to_add = Email.new({:email_address => new_email, :type => new_email_type})
+
+  @contact = Contact.find(last_name)
+
+  @contact.new_email(email_to_add)
+
+  @addresses = @contact.addresses
+  @phones = @contact.phones
+  @emails = @contact.emails
+
+  erb(:details)
 end

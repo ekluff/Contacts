@@ -1,0 +1,33 @@
+<center><h1><font color="red">The Contact Saver Machine</font></h1>
+  <h2>Contact Deets</h2>
+  <br>
+  <br>
+  <%= @contact.first_name %> <%= @contact.last_name %>
+  <br>
+  <%= @contact.job_title %> <%= @contact.company %>
+  <br><br>
+  <% @addresses.each do |address| %>
+    <h3><%= address.type %> Address</h3>
+    <%= address.street %><br>
+    <%= address.city %>, <%= address.state %> <%= address.zip_code %><br>
+  <% end %>
+  <br>
+
+  <% @emails.each do |email| %>
+  <h3><%= email.type %> Email</h3>
+    <%= email.email_address %>
+  <% end %>
+  <br><br>
+  <form action="/contacts/<%= @contact.last_name %>/new_email" method="post">
+    <label for="new_email_address">Add Email Address</label><br>
+    <input type="text" name="new_email_address" placeholder="jen@poop.poop"><br>
+    <label for="new_email_type">Type</label><br>
+    <input type="text" name="new_email_type" placeholder="jen's bathroom"><br>
+    <button name="button" type="submit" class="jens_danger_button">Add Email</button>
+  </form>
+
+
+  <% @phones.each do |phone| %>
+  <h3><%= phone.type %> Phone </h3>
+  <%= phone.phone_number %>
+  <% end %>
