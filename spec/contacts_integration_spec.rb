@@ -8,7 +8,7 @@ set(:show_exceptions, false)
 
 describe("the contact test path", {:type => :feature}) do
   before() do
-    Contacts.clear
+    Contact.clear
     Phone.clear
     Address.clear
     Email.clear

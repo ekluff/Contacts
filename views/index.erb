@@ -1,0 +1,73 @@
+<center><h1><font color="red">The Contact Saver Machine</font></h1>
+<h2>From the Future :: To.... You!</h2>
+<br>
+<br>
+
+</center>
+
+<ul>
+  <% @contacts.each() do |contacts| %>
+  <li><a href="/contacts/<%= contacts.last_name() %>"><%= contacts.first_name() %> <%= contacts.last_name() %></a></li>
+  <% end %>
+</ul>
+
+<br>
+<br>
+
+<form id="new_contact" action="/new_contact" method="post">
+  <label for="first_name">First Name</label><br>
+  <input type="text" name="first_name" placeholder="Taco">
+  <br>
+
+  <label for="last_name">Last Name</label><br>
+  <input type="text" name="last_name" placeholder="Cat">
+  <br>
+
+  <label for="job_title">Job Title</label><br>
+  <input type="text" name="job_title" placeholder="Professional Napper">
+  <br>
+
+  <label for="company">company</label><br>
+  <input type="text" name="company" placeholder="Feline Inc">
+  <br>
+
+  <label for="street">Street</label><br>
+  <input type="text" name="street" placeholder="123 Uno Dos Tres Calle">
+  <br>
+
+  <label for="city">City</label><br>
+  <input type="text" name="city" placeholder="Barcelona">
+  <br>
+
+  <label for="state">state</label><br>
+  <input type="text" name="state" placeholder="Wyoming">
+  <br>
+
+  <label for="zip_code">Zip Code</label><br>
+  <input type="text" name="zip_code" placeholder="90210">
+  <br>
+
+  <label for="address_type">Address Type</label><br>
+  <input type="text" name="address_type" placeholder="Massage Parlor">
+  <br>
+
+  <label for="phone_number">Phone Number</label><br>
+  <input type="text" name="phone_number" placeholder="503-222-2222">
+  <br>
+
+  <label for="phone_type">Phone Number Type</label><br>
+  <input type="text" name="phone_type" placeholder="Scratching Post">
+  <br>
+
+  <label for="email">Email</label><br>
+  <input type="text" name="email" placeholder="t@co.cat">
+  <br>
+
+  <label for="email_type">Email Type</label><br>
+  <input type="text" name="email_type" placeholder="mEYEow phone">
+  <br>
+  <br>
+
+  <button name="button" type="submit" class="JensColorfulButton">Add Contact</button>
+
+</form>
