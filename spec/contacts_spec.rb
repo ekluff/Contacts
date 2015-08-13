@@ -3,7 +3,6 @@ require('contacts')
 require('addresses')
 require('email')
 require('phone')
-# require('pry')
 
 describe('Contact') do
   before() do
