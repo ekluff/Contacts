@@ -2,9 +2,6 @@
 <h2>From the Future :: To.... You!</h2>
 <br>
 <br>
-
-</center>
-
 <ul>
   <% @contacts.each() do |contacts| %>
   <li><a href="/contacts/<%= contacts.last_name() %>"><%= contacts.first_name() %> <%= contacts.last_name() %></a></li>
@@ -71,3 +68,4 @@
   <button name="button" type="submit" class="JensColorfulButton">Add Contact</button>
 
 </form>
+</center>
