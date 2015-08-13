@@ -42,10 +42,12 @@ post('/new_contact') do
   # creates Address instance to add to new_contact
   address_to_add = Address.new({:street => street, :city => city, :state => state, :zip_code => zip_code, :type => address_type})
 
+  # push address, phone, and email into new_contact
   new_contact.new_address(address_to_add)
   new_contact.new_phone(phone_to_add)
   new_contact.new_email(email_to_add)
 
+  # saves new_contact into @@contact
   new_contact.save()
 
   @contacts = Contact.all
