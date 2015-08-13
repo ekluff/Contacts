@@ -1,5 +1,6 @@
 require('rspec')
 require('contacts')
+require('addresses')
 
 describe('Contacts') do
   before() do
@@ -25,5 +26,16 @@ describe('Contacts') do
       Contact.new({:first_name => "Empanada", :last_name => "Fish", :job_title => "Professional Finger Follower", :company => "Pescado Gmbh"}).save()
       expect(Contact.all[1].job_title()).to(eq("Professional Licker"))
     end
+  end
+end
+
+describe ('Addresses') do
+  it('returns the street, city, state, zip code and type of address') do
+    test_address = Address.new({:street => "123 Uno dos tres Calle", :city => "Barcelona", :state => "Wyoming", :zip_code => 90210, :type => "Personal"})
+    expect(test_address.street()).to(eq("123 Uno dos tres Calle"))
+    expect(test_address.city()).to(eq("Barcelona"))
+    expect(test_address.state()).to(eq("Wyoming"))
+    expect(test_address.zip_code()).to(eq(90210))
+    expect(test_address.type()).to(eq("Personal"))
   end
 end
