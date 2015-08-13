@@ -11,10 +11,20 @@ class Contact
     @last_name = attributes.fetch(:last_name)
     @job_title = attributes.fetch(:job_title)
     @company = attributes.fetch(:company)
+    @phones = []
+  end
+
+  define_method(:phones) do
+    @phones
   end
 
   define_method(:save) do
     @@contact.push(self)
+    self
+  end
+
+  define_method(:new_phone) do |new_phone|
+    @phones.push(new_phone)
   end
 
   # Class methods

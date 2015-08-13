@@ -3,8 +3,9 @@ require('contacts')
 require('addresses')
 require('email')
 require('phone')
+# require('pry')
 
-describe('Contacts') do
+describe('Contact') do
   before() do
     Contact.clear
   end
