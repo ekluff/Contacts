@@ -20,7 +20,7 @@ class Contact
 
   define_method(:save) do
     @@contact.push(self)
-    self
+    self # discovered this self was necessary to keep a call of the .save method from returning an array.
   end
 
   define_method(:new_phone) do |new_phone|

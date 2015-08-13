@@ -10,6 +10,7 @@ class Email
 
   define_method(:save) do
     @@email.push(self)
+    self
   end
 
   define_singleton_method(:all) do

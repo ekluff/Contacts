@@ -10,6 +10,7 @@ class Phone
 
   define_method(:save) do
     @@phone.push(self)
+    self
   end
 
   define_singleton_method(:all) do
